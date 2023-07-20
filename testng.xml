@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" >
+    <test verbose="2" preserve-order="true" name="/Users/sonngo/Documents/Hai/MavenProject">
+        <parameter name="browser" value="Chrome"></parameter>
+        <parameter name="url" value="https://demo.guru99.com/telecom/index.html"></parameter>
+        <classes>
+            <class name="test.TC_AddCustomer"></class>
+        </classes>
+
+    </test>
+
+</suite>
