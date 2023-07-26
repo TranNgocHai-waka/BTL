@@ -1,11 +1,11 @@
 package page.Actions;
 
 import core.BasePage;
-import core.ExcelUtils;
+import page.UI.AddCustomerUI;
+import utils.ExcelUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import page.UI.AddCustomerUI;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +25,17 @@ public class AddCustomerActions extends BasePage {
         String address = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Address"));
         sendKeysToElement(driver, AddCustomerUI.TXT_ADDRESS, address);
         String mobile = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Mobile Number"));
+        sendKeysToElement(driver, AddCustomerUI.TXT_MOBILE, mobile);
+    }
+
+    public void closeAlert(){
+        driver.switchTo().alert().accept();
+    }
+    public void sendKeys(String firstName, String lastName, String email, String address, String mobileNumber){
+        sendKeysToElement(driver, AddCustomerUI.TXT_FIRSTNAME, firstName);
+        sendKeysToElement(driver, AddCustomerUI.TXT_LASTNAME, lastName);
+        sendKeysToElement(driver, AddCustomerUI.TXT_EMAIL, email);
+        sendKeysToElement(driver, AddCustomerUI.TXT_ADDRESS, address);
         sendKeysToElement(driver, AddCustomerUI.TXT_MOBILE, mobile);
     }
 

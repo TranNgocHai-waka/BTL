@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     public WebDriver driver;
+
     //khoi tao moi truong
     @Parameters({"browser", "url"})
     @BeforeClass

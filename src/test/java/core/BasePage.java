@@ -19,6 +19,8 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(getElementByXpath(locator)));
         //wait.until(ExpectedConditions.elementToBeClickable(getElement(driver, locator)));
     }
+
+
     public By getElementByXpath(String locator) {
         return By.xpath(locator);//driver.findEle...();
     }
