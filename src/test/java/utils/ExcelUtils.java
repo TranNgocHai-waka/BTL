@@ -1,3 +1,5 @@
+package utils;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -8,6 +10,18 @@ public class ExcelUtils {
     private static XSSFSheet excelSheet;
     private static XSSFRow excelRow;
     private static XSSFCell excelCell;//Ex: A1
+
+    public static void setExcelFile(String path, String sheetName) throws IOException {
+        try {
+            File file = new File(path);
+            FileInputStream excelFile = new FileInputStream(file);
+            // Access the test data sheet
+            excelWBook = new XSSFWorkbook(excelFile);
+            excelSheet = excelWBook.getSheet(sheetName);
+        } catch (Exception e){
+            throw (e);
+        }
+    }
 
     //gọi lại ra dùng thì gọi hàm setExcelFile trước để khai báo file excel cần dùng xong đến gọi getCellData để lấy data theo từng ô
 

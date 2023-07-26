@@ -1,6 +1,7 @@
 package page.Actions;
 
 import core.BasePage;
+import org.testng.Assert;
 import page.UI.AddCustomerUI;
 import utils.ExcelUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,19 +16,6 @@ public class AddCustomerActions extends BasePage {
         this.driver = driver;
     }
 
-    public void readData(String testCase){
-        String firstName = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("First Name"));
-        sendKeysToElement(driver, AddCustomerUI.TXT_FIRSTNAME, firstName);
-        String lastName = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Last Name"));
-        sendKeysToElement(driver, AddCustomerUI.TXT_LASTNAME, lastName);
-        String email = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Email"));
-        sendKeysToElement(driver, AddCustomerUI.TXT_EMAIL, email);
-        String address = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Address"));
-        sendKeysToElement(driver, AddCustomerUI.TXT_ADDRESS, address);
-        String mobile = ExcelUtils.getCellData(ExcelUtils.getRowByTestCaseID(testCase), ExcelUtils.getCol("Mobile Number"));
-        sendKeysToElement(driver, AddCustomerUI.TXT_MOBILE, mobile);
-    }
-
     public void closeAlert(){
         driver.switchTo().alert().accept();
     }
@@ -36,7 +24,7 @@ public class AddCustomerActions extends BasePage {
         sendKeysToElement(driver, AddCustomerUI.TXT_LASTNAME, lastName);
         sendKeysToElement(driver, AddCustomerUI.TXT_EMAIL, email);
         sendKeysToElement(driver, AddCustomerUI.TXT_ADDRESS, address);
-        sendKeysToElement(driver, AddCustomerUI.TXT_MOBILE, mobile);
+        sendKeysToElement(driver, AddCustomerUI.TXT_MOBILE, mobileNumber);
     }
 
     public void clickToSubmit() {
@@ -51,5 +39,11 @@ public class AddCustomerActions extends BasePage {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         WebElement btnSubmit = getElement(driver, AddCustomerUI.BTN_RESET);
         executor.executeScript("arguments[0].click()", btnSubmit);
+    }
+
+    //Verify Actual result and Expected result after run test case
+    public void assertMessage(String expectedMessage, String locator){
+        String actualMessage = getTextOfElement(driver, locator);
+        Assert.assertEquals(expectedMessage, actualMessage);
     }
 }
